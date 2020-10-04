@@ -1,6 +1,7 @@
 name: 'check-gradle-version'
 description: 'GitHub Action for Gradle version verification'
 author: 'madhead'
+inputs:
   gradlew:
     required: false
     default: 'gradlew'
