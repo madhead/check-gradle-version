@@ -531,7 +531,7 @@ function run() {
             core.info(`gradlew executable: ${gradlew}`);
             const gradlewStdout = (yield exec(`${gradlew} --version`)).stdout;
             core.info(gradlewStdout);
-            const version = (_a = gradlewStdout.match(/Gradle (.+)/)) === null || _a === void 0 ? void 0 : _a[1];
+            const version = (_a = gradlewStdout.match(/^Gradle (.+)$/m)) === null || _a === void 0 ? void 0 : _a[1];
             const current = (yield axios_1.default.get('https://services.gradle.org/versions/current')).data.version;
             core.info(`Project's Gradle version: ${version}`);
             core.info(`Current Gradle version: ${current}`);
