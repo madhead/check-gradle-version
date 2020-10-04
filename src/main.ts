@@ -1,18 +1,21 @@
 import * as core from '@actions/core'
+import * as path from 'path'
 import axios from 'axios'
-import util from 'util'
-import {exec as callbackExec} from 'child_process'
+// import util from 'util'
+// import { exec as callbackExec } from 'child_process'
 
-const exec = util.promisify(callbackExec)
+// const exec = util.promisify(callbackExec)
 
 async function run(): Promise<void> {
   try {
-    const gradlew = core.getInput('gradlew')
+    const gradlew = path.resolve('.', core.getInput('gradlew'))
 
-    const output = await exec(`${gradlew} --version`)
+    core.info(`gradlew executable: ${gradlew}`)
 
-    core.info(output.stdout)
-    core.info(output.stderr)
+    // const output = await exec(`${gradlew} --version`)
+
+    // core.info(output.stdout)
+    // core.info(output.stderr)
 
     const current = (
       await axios.get('https://services.gradle.org/versions/current')
