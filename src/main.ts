@@ -18,12 +18,15 @@ async function run(): Promise<void> {
 
     const gradlewStdout = (await exec(`${gradlew} --version`)).stdout
 
-    core.debug(gradlewStdout)
+    core.info(gradlewStdout)
 
     const version = gradlewStdout.match(/Gradle (.+)/)?.[1]
     const current = (
       await axios.get('https://services.gradle.org/versions/current')
     ).data.version
+
+    core.info(`Project's Gradle version: ${version}`)
+    core.info(`Current Gradle version: ${current}`)
 
     core.setOutput('version', version)
     core.setOutput('current', current)
