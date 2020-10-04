@@ -518,18 +518,26 @@ const core = __importStar(__webpack_require__(186));
 const path = __importStar(__webpack_require__(622));
 const axios_1 = __importDefault(__webpack_require__(545));
 const util_1 = __importDefault(__webpack_require__(669));
-const child_process_1 = __webpack_require__(129);
-const exec = util_1.default.promisify(child_process_1.exec);
+const child_process_1 = __importDefault(__webpack_require__(129));
+const fs_1 = __importDefault(__webpack_require__(747));
+const exec = util_1.default.promisify(child_process_1.default.exec);
+const access = util_1.default.promisify(fs_1.default.access);
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const gradlew = path.resolve('.', core.getInput('gradlew'));
+            yield access(gradlew, fs_1.default.constants.X_OK);
             core.info(`gradlew executable: ${gradlew}`);
-            const output = yield exec(`${gradlew} --version`);
-            core.info(output.stdout);
-            core.info(output.stderr);
+            const gradlewStdout = (yield exec(`${gradlew} --version`)).stdout;
+            core.debug(gradlewStdout);
+            const version = (_a = gradlewStdout.match(/Gradle (.+)/)) === null || _a === void 0 ? void 0 : _a[1];
             const current = (yield axios_1.default.get('https://services.gradle.org/versions/current')).data.version;
-            core.info(`Current Gradle version: ${current}`);
+            core.setOutput('version', version);
+            core.setOutput('current', current);
+            if (version !== current) {
+                core.setFailed(`Project's Gradle version (${version}) differs from current (${current})`);
+            }
         }
         catch (error) {
             core.setFailed(error.message);

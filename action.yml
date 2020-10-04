@@ -6,6 +6,11 @@ inputs:
     required: false
     default: 'gradlew'
     description: 'Relative path to gradlew executable'
+outputs:
+  version:
+    description: 'Project Gradle version'
+  current:
+    description: 'Current Gradle version'
 runs:
   using: 'node12'
   main: 'dist/index.js'
