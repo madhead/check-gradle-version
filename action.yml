@@ -14,3 +14,6 @@ outputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: 'chevron-up'
+  color: 'orange'
