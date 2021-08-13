@@ -1,9 +1,9 @@
 import * as core from '@actions/core'
 import * as path from 'path'
 import axios from 'axios'
-import util from 'util'
 import child_process from 'child_process'
 import fs from 'fs'
+import util from 'util'
 
 const exec = util.promisify(child_process.exec)
 const access = util.promisify(fs.access)
