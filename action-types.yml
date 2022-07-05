@@ -1,0 +1,8 @@
+inputs:
+  gradlew:
+    type: string
+outputs:
+  version:
+    type: string
+  current:
+    type: string
