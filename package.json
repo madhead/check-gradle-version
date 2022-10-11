@@ -25,11 +25,11 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.9.1",
-    "axios": "^0.27.2"
+    "axios": "^1.1.2"
   },
   "devDependencies": {
     "@types/jest": "^28.1.7",
-    "@types/node": "^18.7.17",
+    "@types/node": "^18.8.4",
     "@typescript-eslint/parser": "^5.37.0",
     "@vercel/ncc": "^0.34.0",
     "eslint": "^8.23.1",
