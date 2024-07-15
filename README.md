@@ -6,7 +6,7 @@ Simple Github Action to check that your projects uses the latest stable (AKA "cu
 jobs:
   gradle_version:
     name: Check Gradle version
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v2
       - uses: madhead/check-gradle-version@v1
